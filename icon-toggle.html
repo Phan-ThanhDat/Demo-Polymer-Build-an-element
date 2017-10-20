@@ -10,10 +10,18 @@
       :host {
         display: inline-block;
       }
+      iron-icon {
+        fill: rgba(150,150,150,150);
+        stroke: rgba(150,150,150,150);
+      }
+      :host([pressed]) iron-icon {
+        fill: rgba(150,150,150,150);
+      }
     </style>
 
     <!-- shadow DOM goes here -->
-    <span>Not much here yet.</span>
+    <iron-icon icon="polymer">
+    </iron-icon>
   </template>
 
   <script>
