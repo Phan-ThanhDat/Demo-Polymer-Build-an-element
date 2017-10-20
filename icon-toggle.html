@@ -5,36 +5,53 @@
 
   <template>
 
-    <style>
-      /* shadow DOM styles go here */
-      :host {
-        display: inline-block;
-      }
-      iron-icon {
-        fill: rgba(150,150,150,150);
-        stroke: rgba(150,150,150,150);
-      }
-      :host([pressed]) iron-icon {
-        fill: rgba(150,150,150,150);
-      }
-    </style>
+     <style>
+    /* local styles go here */
+    :host {
+      display: inline-block;
+    }
+    iron-icon {
+      fill: var(--icon-toggle-color, rgba(0,0,0,0));
+      stroke: var(--icon-toggle-outline-color, currentcolor);
+    }
+    :host([pressed]) iron-icon {
+      fill: var(--icon-toggle-pressed-color, currentcolor);
+    }
+  </style>
 
     <!-- shadow DOM goes here -->
-    <iron-icon icon="polymer">
-    </iron-icon>
+   <iron-icon icon="[[toggleIcon]]" on-click="toggle"></iron-icon>
   </template>
 
   <script>
-    class IconToggle extends Polymer.Element {
-      static get is() {
-        return 'icon-toggle';
-      }
-      constructor() {
-        super();
+  class IconToggle extends Polymer.Element {
+    static get is() {
+    return "icon-toggle";
+    }
+    static get properties() {
+      return {
+	  
+		pressed: {
+          type: Boolean,
+          notify: true,
+          reflectToAttribute: true,
+          value: false
+        },
+		
+        toggleIcon: {
+          type: String
+        },
       }
     }
-    customElements.define(IconToggle.is, IconToggle);
-  </script>
+    constructor() {
+      super();
+    }
+	toggle() {
+      this.pressed = !this.pressed;
+    }
+  }
+  customElements.define(IconToggle.is, IconToggle);
+</script>
 
 </dom-module>
 
